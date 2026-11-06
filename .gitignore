@@ -1,0 +1,16 @@
+# Segredos e ambiente
+.env
+# Dados físicos do PostgreSQL (proibido versionar)
+pgdata/
+postgres-data/
+*.pgdata
+# Build
+backend/target/
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/
+# IDE / SO
+.idea/
+.vscode/
+*.log
+Thumbs.db

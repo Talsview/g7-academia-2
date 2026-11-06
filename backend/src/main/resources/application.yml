@@ -1,0 +1,33 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: g7-academia
+  datasource:
+    # Backend conecta no PgBouncer (porta 6432), nunca direto no PostgreSQL
+    url: ${DB_URL:jdbc:postgresql://localhost:6432/g7_academia}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    hikari:
+      maximum-pool-size: 10     # <= default_pool_size do PgBouncer (10)
+      minimum-idle: 2
+      connection-timeout: 10000
+      idle-timeout: 120000
+      max-lifetime: 900000
+      pool-name: g7-hikari
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+g7:
+  jwt:
+    secret: ${JWT_SECRET}
+    expiration-minutes: 480
+  cors:
+    allowed-origin: ${CORS_ALLOWED_ORIGIN:http://localhost:4200}
+  inadimplencia:
+    intervalo-ms: 300000        # executa a Procedure a cada 5 minutos
